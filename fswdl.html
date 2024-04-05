@@ -53,6 +53,120 @@
         <h2>TASK 12:</h2><h3>Write a PHP program to sort the student records which are stored in the database using
             selection sort.
             </h3>
+            <p>
+                <!DOCTYPE html>
+<html ng-app="studentApp">
+<head>
+    <title>Student information</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="StudentAppController">
+        <center><h1>Student Information Form</h1></center>
+        <table align="center" cellspacing="5px" cellpadding="5px">
+            <form name="studentForm" ng-submit="submitForm()" novalidate>
+                <tr>
+                    <td><label for="fname">First Name:</label></td>
+                    <td><input type="text" id="fname" ng-model="student.fname" required></td>
+                </tr>
+                <tr>
+                    <td><label for="lname">Last Name:</label></td>
+                    <td><input type="text" id="lname" ng-model="student.lname" required></td>
+                </tr>
+                <tr>
+                    <td><label for="age">Age:</label></td>
+                    <td><input type="number" id="age" ng-model="student.age" required></td>
+                </tr>
+                <tr>
+                    <td><label for="email">Email:</label></td>
+                    <td><input type="email" id="email" ng-model="student.email" required></td>
+                </tr>
+                <tr>
+                    <td><label for="grade">Grade:</label></td>
+                    <td><input type="text" id="grade" ng-model="student.grade" required></td>
+                </tr>
+                <tr>
+                    <td><label for="dob">DOB:</label></td>
+                    <td><input type="date" id="dob" ng-model="student.dob" required></td>
+                </tr>
+                <tr>
+                    <td><label for="gender">Gender:</label></td>
+                    <td>
+                        <select id="gender" ng-model="student.gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="">Training Type:</label></td>
+                    <td>
+                        <input type="radio" name="Training" id="online" ng-model="student.Training" value="Online">
+                        <label for="online">Online</label>
+                    </td>
+                    <td>
+                        <input type="radio" name="Training" id="onsite" ng-model="student.Training" value="Onsite">
+                        <label for="onsite">Onsite</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="">Subjects:</label></td>
+                    <td>
+                        <input type="checkbox" name="Maths" id="Maths" ng-model="student.subjects.Maths">
+                        <label for="Maths">Maths</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="Physics" id="Physics" ng-model="student.subjects.Physics">
+                        <label for="Physics">Physics</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="Chemistry" id="Chemistry" ng-model="student.subjects.Chemistry">
+                        <label for="Chemistry">Chemistry</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit" ng-disabled="studentForm.$invalid">Submit</button></td>
+                    <td><button type="button" ng-click="resetForm()">Reset</button></td>
+                </tr>
+            </form>
+        </table>
+        <div ng-show="submitted">
+            <h3>Submitted Student Information:</h3>
+            <p>First Name: {{student.fname}}</p>
+            <p>Last Name: {{student.lname}}</p>
+            <p>Age: {{student.age}}</p>
+            <p>Email: {{student.email}}</p>
+            <p>Grade: {{student.grade}}</p>
+            <p>DOB: {{student.dob}}</p>
+            <p>Gender: {{student.gender}}</p>
+            <p>Training Type: {{student.Training}}</p>
+            <p>Subjects:</p>
+            <ul>
+                <li ng-if="student.subjects.Maths">Maths</li>
+                <li ng-if="student.subjects.Physics">Physics</li>
+                <li ng-if="student.subjects.Chemistry">Chemistry</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var app = angular.module('studentApp', []);
+        app.controller('StudentAppController', function($scope) {
+            $scope.student = {};
+            $scope.submitForm = function() {
+                $scope.submitted = true;
+            };
+            $scope.resetForm = function() {
+                $scope.student = {};
+                $scope.submitted = false;
+                $scope.studentForm.$setPristine();
+                $scope.studentForm.$setUntouched();
+            };
+        });
+    </script>
+</body>
+</html>
+            </p>
     </fieldset>
 </body>
 </html>
